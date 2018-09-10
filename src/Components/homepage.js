@@ -9,7 +9,7 @@ class Homepage extends Component {
   renderMovieInfo = () => {
     console.log('triggered!')
     if(this.state.items.length > 0 ){
-      return this.state.items[0].map(item => {
+      return this.state.items.map(item => {
         return(
           <div>
             <h2>Category: {item.category}</h2>
