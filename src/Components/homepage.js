@@ -12,6 +12,7 @@ class Homepage extends Component {
       return this.state.items.map(item => {
         return(
           <div>
+            <h1>HEADLINE</h1>
             <h2>Category: {item.category}</h2>
             <h3>Borough: {item.borough}</h3>
           </div>
@@ -25,15 +26,15 @@ class Homepage extends Component {
 
     event.preventDefault()
 
-    this.renderMovieInfo()
-
-    return fetch(`https://data.cityofnewyork.us/resource/6aka-uima.json?$$app_token=`, {
+    fetch(`https://data.cityofnewyork.us/resource/6aka-uima.json?$$app_token=`, {
       method: 'GET'
     }).then(res => res.json())
       // .then (res => console.log(res))
       .then(res => this.setState({
         items: res}, ()=> console.log('the state: ', this.state))
       );
+
+          this.renderMovieInfo()
   }
 
   render() {
