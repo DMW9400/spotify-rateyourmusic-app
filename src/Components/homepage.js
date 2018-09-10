@@ -10,7 +10,7 @@ class Homepage extends Component {
     console.log('triggered!')
     if(this.state.items.length > 0 ){
       return this.state.items.map(item => {
-        return(
+        return (
           <div>
             <h1>HEADLINE</h1>
             <h2>Category: {item.category}</h2>
@@ -18,7 +18,10 @@ class Homepage extends Component {
           </div>
         )
       })
-
+    } else {
+      return (
+        <h1>NO INFO</h1>
+      )
     }
   }
 
@@ -34,7 +37,6 @@ class Homepage extends Component {
         items: res}, ()=> console.log('the state: ', this.state))
       );
 
-          this.renderMovieInfo()
   }
 
   render() {
@@ -46,7 +48,7 @@ class Homepage extends Component {
             Button
           </button>
         </form>
-        {this.renderMovieInfo}
+        {this.renderMovieInfo()}
       </div>
       )
   }
