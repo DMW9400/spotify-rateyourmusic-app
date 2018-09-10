@@ -12,7 +12,6 @@ class Homepage extends Component {
       return this.state.items.map(item => {
         return (
           <div>
-            <h1>HEADLINE</h1>
             <h2>Category: {item.category}</h2>
             <h3>Borough: {item.borough}</h3>
           </div>
