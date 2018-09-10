@@ -2,22 +2,38 @@ import React, { Component } from 'react';
 
 class Homepage extends Component {
 
+  state = {
+    items: []
+  }
+
+  renderMovieInfo = () => {
+    console.log('triggered!')
+    if(this.state.items.length > 0 ){
+      return this.state.items[0].map(item => {
+        return(
+          <div>
+            <h2>Category: {item.category}</h2>
+            <h3>Borough: {item.borough}</h3>
+          </div>
+        )
+      })
+
+    }
+  }
+
   handleSubmit = (event) => {
 
     event.preventDefault()
 
-    let accessToken = '600a5bd2e1554c0ab6c8fd7ae37b27d9'
+    this.renderMovieInfo()
 
-    return fetch('https://api.spotify.com/v1/search', {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + `${accessToken}`,
-          q: 'Pink%20Floyd',
-          type: 'artist'
-      }
-
-      }).then(res => res.json())
-    .then (res => console.log(res));
+    return fetch(`https://data.cityofnewyork.us/resource/6aka-uima.json?$$app_token=`, {
+      method: 'GET'
+    }).then(res => res.json())
+      // .then (res => console.log(res))
+      .then(res => this.setState({
+        items: res}, ()=> console.log('the state: ', this.state))
+      );
   }
 
   render() {
@@ -29,6 +45,7 @@ class Homepage extends Component {
             Button
           </button>
         </form>
+        {this.renderMovieInfo}
       </div>
       )
   }
